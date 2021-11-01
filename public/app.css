@@ -1,0 +1,27 @@
+body {
+    background-color: navy;
+    text-transform: capitalize;
+}
+
+section.article,
+section{
+    background-color: white;
+    font-size: large;
+    color: crimson;
+    max-width: 90%;
+    margin: auto;
+    padding: 25px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+article {
+    background-color: chocolate;
+}
+section.article + section.article {
+    margin-top: 200px;
+    border-bottom: black solid 1px;
+    max-width: 75%;
+}
+
+p {
+    background-color: chartreuse;
+}
