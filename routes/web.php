@@ -30,10 +30,11 @@ Route::get('/', function () {
     // });
     return view('posts', [
     //    'posts'=> Post::all()
-    //    specificando la categorie "with category" e poi usando il get, si bypassa il problema del n+1:performa x query per x elementi dell'array
-    //    'posts'=> Post::latest()->with('category')->get() // con latest le mette in ordine, si può specificare la colonna
+    //    specificando una colonna "with category" si bypassa il problema del n+1 
+    // ? eager load
+    'posts'=> Post::latest()->with(['category', 'author'])->get() // con latest le mette in ordine
         
-        'posts'=> Post::latest()->get()
+        // 'posts'=> Post::latest()->get()
 
     ]);    
 });
@@ -81,32 +82,30 @@ Route::get('/', function () {
 //     return view('post', ['post' => $post ]);
 
 
-// ! opzione 4 : stessa cosa con l'utilizzo della classe Post (../Model/Post.php) whatever binding
+// ! SINGLE POST opzione 4 : stessa cosa con l'utilizzo della classe Post (../Model/Post.php) whatever binding
 Route::get('posts/{post:slug}', function(Post $post) {
-//? trova un post grazie al'Id (find) e lo passa ('post' => $post) alla view "post" (return)
+
     return view('post', [
         'post' => $post
     ]);
 });
 // ->where('post', '[A-Za-z-/_]+'); restrizioni sull'url
 
-
+// ! CATEGORIE
 Route::get('categories/{category:slug}', function(Category $category) {
     
     return view('posts', [
-            'posts' => $category->posts
+        // 'posts' => $category->posts->load(['category', 'author']) //n+1 problem solved in the Post model definition
+        'posts' => $category->posts
         ]);
 });
 
-Route::get('users/{user:username}', function(User $user) {
-    
-    dd($user);
-    dd($user->posts);
+// ! AUTORI
+Route::get('users/{author:username}', function(User $author) {
 
     return view('posts', [
-            'posts' => $user->posts,
-            'userDebug' => $user
-            // 'posts' => $user->posts->load(['category', 'user'])
+            'posts' => $author->posts
+            // 'userDebug' => $user
         ]);
 });
 

@@ -13,7 +13,7 @@
                 
                 <div>
                     <p>
-                        by the user : <a href="/users/{{$post->user->username}}"> {{$post->user->name}} </a>
+                        by the user : <a href="/users/{{$post->author->username}}"> {{$post->author->name}} </a>
                         <br>
                         category : <a href="/categories/{{ $post->category->slug }}" > {{$post->category->name }} </a>
                     </p>

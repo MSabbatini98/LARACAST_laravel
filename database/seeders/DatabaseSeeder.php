@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
 
         Post::factory(5)->create();
         
-        // ?in caso si volessero passare nomi specifici, quelli citati non verranno generati automaticamente        
+        // ?in caso si volessero passare nomi di user(class) specifici, quelli citati non verranno generati automaticamente        
         // $user = User::factory()->create([
         //     'name' => 'Jhon Doe',
         // ]);
-            // ?in qusto caso si creano 5 nuovi post, che avranno lo stesso user id di quello generato in precedenza    
-            // Post::factory()->create([
+            // ?in qusto caso si creano x nuovi post, che avranno lo stesso user id di quello generato in precedenza    
+            // Post::factory(x)->create([
             //     'user_id' => $user->id
             // ])
 

@@ -17,7 +17,7 @@
         categoria : <a href="/categories/{{ $post->category->slug }}" > {{$post->category->name }} </a>
     </small>
     <p>
-        by the author : <a href="/authors/{{ $post->author->username }}"> {{$post->author->name}} </a>
+        by the author : <a href="/users/{{ $post->author->username }}"> {{$post->author->name}} </a>
     </p>
         <div class="post_content">
             <?= $post->body ?>

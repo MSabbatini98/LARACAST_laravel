@@ -13,15 +13,17 @@ class Post extends Model
     //? attributi che NON POSSONO essere mass-assign
      protected $guarded = ['id'];
 
-     protected $with = ['user', 'category'];
+    //? Risolve n+1 problems: eager loading by default
+    protected $with = ['author', 'category'];
 
     public function category() 
     {
         return $this->belongsTo(Category::class);
     }
-
-    public function user() //user_id
+    public function author() //cerca author_id
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+        //il secondo argomento specifica la foreign key in caso differente da quella standard "author_id"
     }
+   
 }
